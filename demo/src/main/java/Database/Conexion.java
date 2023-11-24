@@ -14,7 +14,7 @@ public class Conexion {
     public Connection getConexion() {
         try {
             Properties properties = new Properties();
-            FileInputStream fileInputStream = new FileInputStream("src/main/java/database/app.properties");
+            FileInputStream fileInputStream = new FileInputStream("src/main/java/Database/app.properties");
             properties.load(fileInputStream);
             con = (Connection)DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password")); 
             if(con != null){

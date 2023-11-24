@@ -17,14 +17,11 @@ public class Medicaments {
         this.id = id;
     }
 
-    public String getNombre() {
+    public String getName() {
         return name;
     }
 
-    public void setNombre(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-
-
-    
 }

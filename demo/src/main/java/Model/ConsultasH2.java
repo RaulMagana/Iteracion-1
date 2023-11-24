@@ -1,17 +1,16 @@
 package demo.src.main.java.Model;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import demo.src.main.java.Database.Conexion;
 public class ConsultasH2 {
     
     public void insertarMedicamento(Medicaments medicamento) {
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO medicamentos (nombre, descripcion) VALUES (?, ?)")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO medicamentos (nombre) VALUES (?)")) {
 
-            preparedStatement.setString(1, medicamento.getNombre());
-            preparedStatement.setString(2, medicamento.getDescripcion());
+            preparedStatement.setString(1, medicamento.getName());  // Corregido a getName()
 
             preparedStatement.executeUpdate();
 
@@ -19,11 +18,10 @@ public class ConsultasH2 {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
-        private Connection getConnection() {
-            Conexion conexion = new Conexion();
-            return conexion.getConexion();
-        }
-        
+    private Connection getConnection() {
+        Conexion conexion = new Conexion();
+        return conexion.getConexion();
     }
 }
