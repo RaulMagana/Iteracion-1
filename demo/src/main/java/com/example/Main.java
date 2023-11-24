@@ -1,7 +1,7 @@
-package demo.src.main.java.com.example;
+package com.example;
 
-import demo.src.main.java.Controller.H2DBController;
-import demo.src.main.java.Model.Medicaments;
+import Controller.H2DBController;
+import Model.Medicaments;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
-package demo.src.main.java.Controller;
+package Controller;
 
-import demo.src.main.java.Model.ConsultasH2;
-import demo.src.main.java.Model.Medicaments;
+import Model.ConsultasH2;
+import Model.Medicaments;
 
 public class H2DBController {
 

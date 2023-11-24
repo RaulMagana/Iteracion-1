@@ -1,4 +1,4 @@
-package demo.src.main.java.Database;
+package Database;
 
 
 import java.io.FileInputStream;

@@ -1,9 +1,9 @@
-package demo.src.main.java.Model;
+package Model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import demo.src.main.java.Database.Conexion;
+import Database.Conexion;
 public class ConsultasH2 {
     
     public void insertarMedicamento(Medicaments medicamento) {

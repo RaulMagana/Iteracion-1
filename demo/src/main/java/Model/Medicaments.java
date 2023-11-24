@@ -1,4 +1,4 @@
-package demo.src.main.java.Model;
+package Model;
 
 public class Medicaments {
     private int id;
