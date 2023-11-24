@@ -13,6 +13,7 @@ public class Conexion {
 
     public Connection getConexion() {
         try {
+            
             Properties properties = new Properties();
             FileInputStream fileInputStream = new FileInputStream("demo/src/main/java/Database/app.properties");
             properties.load(fileInputStream);
