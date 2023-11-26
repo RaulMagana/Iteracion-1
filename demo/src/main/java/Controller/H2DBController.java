@@ -2,26 +2,67 @@ package Controller;
 
 import Model.ConsultasH2;
 import Model.Medicaments;
-import View.Jtable;
+
 import java.util.List;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import View.Jtable;
 
-public class H2DBController {
+public class H2DBController implements ActionListener {
+    private final Medicaments medicaments;
+    private final ConsultasH2 consultasH2;
+    private final Jtable jtable;
 
-    private ConsultasH2 consultasH2;
-    private Jtable jtable;
-    private List<Medicaments> medicamentos;
-
-    public H2DBController() {
-        this.consultasH2 = new ConsultasH2();
-        this.jtable = new Jtable();
+    public H2DBController(Medicaments medicaments, ConsultasH2 consultasH2, Jtable jtable) {
+        this.medicaments = medicaments;
+        this.consultasH2 = consultasH2;
+        this.jtable = jtable;
+        this.jtable.jButton1.addActionListener(this);
+        this.jtable.jButton2.addActionListener(this);
+        
     }
 
-    public void insertarMedicamento(Medicaments medicamento) {
-        consultasH2.insertarMedicamento(medicamento);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object source = e.getSource();
+
+        if (source == jtable.jButton1) {
+            insertarMedicamento();
+        }
+        
+
     }
+
 
     public void tablaMedicamentos() {
         consultasH2.tablaMedicamentos();
+    }
+
+
+    private void insertarMedicamento() {
+        obtenerMedicamentoDesdeVista();
+        if (consultasH2.insertarMedicamento(medicaments)) {
+            JOptionPane.showMessageDialog(jtable, "Medicamento agregado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(jtable, "No se pudo agregar el medicamento");
+        }
+    }
+
+    
+
+
+    private void obtenerMedicamentoDesdeVista(){
+        medicaments.setName(jtable.jTextField1.getText());
+    }
+
+    private void llenarVistaDesdeMedicamento() {
+        jtable.jTextField1.setText(String.valueOf(medicaments.getId()));
+        jtable.jTextField2.setText(medicaments.getName());
     }
 
     public void mostrarVentana() {
