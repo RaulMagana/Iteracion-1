@@ -2,16 +2,12 @@ package Controller;
 
 import Model.ConsultasH2;
 import Model.Medicaments;
-
 import java.util.List;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import View.Jtable;
-import javax.swing.table.DefaultTableModel;
+
 
 public class H2DBController implements ActionListener {
     private final Medicaments medicaments;

@@ -7,13 +7,7 @@ import Database.Conexion;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 
-import org.h2.table.Table;
-
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import View.Jtable;
 import javax.swing.JOptionPane;
 
 public class ConsultasH2 {
@@ -28,6 +22,53 @@ public class ConsultasH2 {
         } catch (SQLException e) {
             System.out.println(e);
             return false;
+        }
+    }
+
+    public boolean eliminarMedicamento(Medicaments medicamento) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM medicamentos WHERE id = ?")) {
+
+            preparedStatement.setInt(1, medicamento.getId());
+
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean actualizarMedicamento(Medicaments medicamento) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE medicamentos SET nombre = ? WHERE id = ?")) {
+
+            preparedStatement.setString(1, medicamento.getName());
+            preparedStatement.setInt(2, medicamento.getId());
+
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public Medicaments buscarMedicamento(Medicaments medicamento) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicamentos WHERE id = ?")) {
+
+            preparedStatement.setInt(1, medicamento.getId());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                medicamento.setName(resultSet.getString("nombre"));
+                return medicamento;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
         }
     }
 
