@@ -22,6 +22,7 @@ public class H2DBController implements ActionListener {
         this.jtable.jButton2.addActionListener(this);
         this.jtable.jButton3.addActionListener(this);
         this.jtable.jButton4.addActionListener(this);
+        this.jtable.jButton5.addActionListener(this);
         actualizarTabla();
     }
 
@@ -38,9 +39,23 @@ public class H2DBController implements ActionListener {
             actualizarMedicamento();
         } else if (source == jtable.jButton2) {
             buscarMedicamento();
+        }else if (source == jtable.jButton5) {
+            borrarTodosLosMedicamentos();
         }
         
 
+    }
+
+    public void borrarTodosLosMedicamentos() {
+        int confirmacion = JOptionPane.showConfirmDialog(jtable, "¿Estas seguro de borrar todos los medicamentos?");
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (consultasH2.borrarTodosLosMedicamentos()) {
+                JOptionPane.showMessageDialog(jtable, "Medicamentos borrados correctamente");
+                actualizarTabla();
+            } else {
+                JOptionPane.showMessageDialog(jtable, "No se pudo borrar los medicamentos");
+            }
+        }
     }
 
     private void actualizarTabla(){

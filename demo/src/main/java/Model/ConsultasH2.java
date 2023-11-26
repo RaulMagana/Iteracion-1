@@ -12,7 +12,27 @@ import javax.swing.JOptionPane;
 
 public class ConsultasH2 {
 
+    public boolean reiniciarId() {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("ALTER TABLE medicamentos ALTER COLUMN id RESTART WITH 1")) {
+
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
     
+    public boolean borrarTodosLosMedicamentos() {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM medicamentos")) {
+
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
     
     public boolean insertarMedicamento(Medicaments medicamento) {
         try (Connection connection = getConnection();
