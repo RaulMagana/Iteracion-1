@@ -23,6 +23,7 @@ public class H2DBController implements ActionListener {
         this.jtable.jButton3.addActionListener(this);
         this.jtable.jButton4.addActionListener(this);
         this.jtable.jButton5.addActionListener(this);
+        this.jtable.jButton6.addActionListener(this);
         actualizarTabla();
     }
 
@@ -41,9 +42,22 @@ public class H2DBController implements ActionListener {
             buscarMedicamento();
         }else if (source == jtable.jButton5) {
             borrarTodosLosMedicamentos();
+        }else if (source == jtable.jButton6) {
+            reiniciarId();
         }
-        
 
+    }
+
+    private void reiniciarId() {
+        int confirmacion = JOptionPane.showConfirmDialog(jtable, "¿Estas seguro de reiniciar el ID?");
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (consultasH2.reiniciarId()) {
+                JOptionPane.showMessageDialog(jtable, "ID reiniciado correctamente");
+                actualizarTabla();
+            } else {
+                JOptionPane.showMessageDialog(jtable, "No se pudo reiniciar el ID");
+            }
+        }
     }
 
     public void borrarTodosLosMedicamentos() {
