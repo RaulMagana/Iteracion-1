@@ -30,6 +30,12 @@ public class H2DBController implements ActionListener {
 
         if (source == jtable.jButton1) {
             insertarMedicamento();
+        }else if (source == jtable.jButton3) {
+            eliminarMedicamento();
+        } else if (source == jtable.jButton4) {
+            actualizarMedicamento();
+        } else if (source == jtable.jButton2) {
+            buscarMedicamento();
         }
         
 
@@ -54,6 +60,56 @@ public class H2DBController implements ActionListener {
             actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(jtable, "No se pudo agregar el medicamento");
+        }
+    }
+
+    private void eliminarMedicamento() {
+        obtenerMedicamentoDesdeVista();
+        if (consultasH2.eliminarMedicamento(medicaments)) {
+            JOptionPane.showMessageDialog(jtable, "Medicamento eliminado correctamente");
+            actualizarTabla();
+        } else {
+            JOptionPane.showMessageDialog(jtable, "No se pudo eliminar el medicamento");
+        }
+    }
+
+    private void actualizarMedicamento() {
+        obtenerMedicamentoDesdeVista();
+        if (consultasH2.actualizarMedicamento(medicaments)) {
+            JOptionPane.showMessageDialog(jtable, "Medicamento actualizado correctamente");
+            actualizarTabla();
+        } else {
+            JOptionPane.showMessageDialog(jtable, "No se pudo actualizar el medicamento");
+        }
+    }
+
+    private void buscarMedicamento() {
+        obtenerMedicamentoDesdeVista();
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
+        medicaments.setName(jtable.jTextField2.getText());
+        if (consultasH2.buscarMedicamento(medicaments) != null) {
+            JOptionPane.showMessageDialog(jtable, "Medicamento encontrado");
+            llenarVistaDesdeMedicamento();
+        } else {
+            JOptionPane.showMessageDialog(jtable, "No se pudo encontrar el medicamento");
         }
     }
 
