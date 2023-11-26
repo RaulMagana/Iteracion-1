@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ConsultasH2 {
+
+    
     
     public boolean insertarMedicamento(Medicaments medicamento) {
         try (Connection connection = getConnection();

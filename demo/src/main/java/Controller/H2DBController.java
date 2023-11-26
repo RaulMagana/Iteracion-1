@@ -20,6 +20,8 @@ public class H2DBController implements ActionListener {
         this.jtable = jtable;
         this.jtable.jButton1.addActionListener(this);
         this.jtable.jButton2.addActionListener(this);
+        this.jtable.jButton3.addActionListener(this);
+        this.jtable.jButton4.addActionListener(this);
         actualizarTabla();
     }
 
@@ -65,24 +67,31 @@ public class H2DBController implements ActionListener {
 
     private void eliminarMedicamento() {
         obtenerMedicamentoDesdeVista();
-        if (consultasH2.eliminarMedicamento(medicaments)) {
+        if (medicaments.getId() > 0) {
+            if (consultasH2.eliminarMedicamento(medicaments)) {
             JOptionPane.showMessageDialog(jtable, "Medicamento eliminado correctamente");
             actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(jtable, "No se pudo eliminar el medicamento");
         }
+        }else{
+            JOptionPane.showMessageDialog(jtable, "ID INVALIDO");
+        }
     }
 
     private void actualizarMedicamento() {
         obtenerMedicamentoDesdeVista();
+       if(medicaments.getId() > 0){
         if (consultasH2.actualizarMedicamento(medicaments)) {
             JOptionPane.showMessageDialog(jtable, "Medicamento actualizado correctamente");
             actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(jtable, "No se pudo actualizar el medicamento");
         }
+    }else{
+        JOptionPane.showMessageDialog(jtable, "ID INVALIDO");
     }
-
+}
     private void buscarMedicamento() {
         obtenerMedicamentoDesdeVista();
         medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
