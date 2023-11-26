@@ -19,7 +19,15 @@ public class Jtable extends javax.swing.JFrame {
         initComponents();
     }
 
-    
+    public void actualizarTabla(List<Medicaments> data) {
+        DefaultTableModel model = (DefaultTableModel) Table1.getModel();
+        model.setRowCount(0);
+
+        for (Medicaments medicament : data) {
+            Object[] row = {medicament.getId(), medicament.getName()};
+            model.addRow(row);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

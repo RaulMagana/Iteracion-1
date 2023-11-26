@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import View.Jtable;
+import javax.swing.table.DefaultTableModel;
 
 public class H2DBController implements ActionListener {
     private final Medicaments medicaments;
@@ -23,7 +24,7 @@ public class H2DBController implements ActionListener {
         this.jtable = jtable;
         this.jtable.jButton1.addActionListener(this);
         this.jtable.jButton2.addActionListener(this);
-        
+        actualizarTabla();
     }
 
     @Override
@@ -38,9 +39,15 @@ public class H2DBController implements ActionListener {
 
     }
 
+    private void actualizarTabla(){
+        List<Medicaments> medicamentos = consultasH2.tablaMedicamentos();
+        jtable.actualizarTabla(medicamentos);
+
+  }
 
     public void tablaMedicamentos() {
         consultasH2.tablaMedicamentos();
+        actualizarTabla();
     }
 
 
@@ -48,6 +55,7 @@ public class H2DBController implements ActionListener {
         obtenerMedicamentoDesdeVista();
         if (consultasH2.insertarMedicamento(medicaments)) {
             JOptionPane.showMessageDialog(jtable, "Medicamento agregado correctamente");
+            actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(jtable, "No se pudo agregar el medicamento");
         }
@@ -57,7 +65,7 @@ public class H2DBController implements ActionListener {
 
 
     private void obtenerMedicamentoDesdeVista(){
-        medicaments.setName(jtable.jTextField1.getText());
+        medicaments.setName(jtable.jTextField2.getText());
     }
 
     private void llenarVistaDesdeMedicamento() {
