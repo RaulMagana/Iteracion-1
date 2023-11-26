@@ -6,7 +6,11 @@ import Model.Medicaments;
 public class Main {
     public static void main(String[] args) {
          H2DBController controller = new H2DBController();
-         Medicaments medicamento = new Medicaments(1, "Paracetamol");
+         controller.mostrarVentana();
+         Medicaments medicamento = new Medicaments(5, "actron");
+        
         controller.insertarMedicamento(medicamento);
+        controller.tablaMedicamentos();
+
     }
 }
