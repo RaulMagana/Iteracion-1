@@ -16,3 +16,6 @@ public class Main {
         var medicamentos = consultasH2.tablaMedicamentos();
     }
 }
+
+
+// YA ESTA FUNCINAL EL CODIGO, SOLO FALTA AGREGAR EL BOTON DE ELIMINAR, BUSCAR Y ACTUALIZAR
