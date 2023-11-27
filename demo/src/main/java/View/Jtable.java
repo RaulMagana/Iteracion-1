@@ -21,7 +21,7 @@ public class Jtable extends javax.swing.JFrame {
     public void actualizarTabla(List<Medicaments> data) {
         DefaultTableModel model = (DefaultTableModel) Table1.getModel();
         model.setRowCount(0);
-
+    
         for (Medicaments medicament : data) {
             Object[] row = {medicament.getId(), medicament.getName()};
             model.addRow(row);
