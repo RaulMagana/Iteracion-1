@@ -129,8 +129,10 @@ public class H2DBController implements ActionListener {
     if (!resultadosBusqueda.isEmpty()) {
         JOptionPane.showMessageDialog(jtable, "Medicamento encontrado");
         jtable.actualizarTabla(resultadosBusqueda);
+    } else {
+        JOptionPane.showMessageDialog(jtable, "No se encontro el medicamento");
     }
-    }
+}
 
     
 

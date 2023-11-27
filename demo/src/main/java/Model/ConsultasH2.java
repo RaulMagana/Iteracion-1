@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Database.Conexion;
+import Excepciones.Excepciones;
+
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class ConsultasH2 {
@@ -27,8 +28,11 @@ public class ConsultasH2 {
                 medicamento.setName(resultSet.getString("nombre"));
                 medicamentos.add(medicamento);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+        
+            throw new Excepciones(e.getMessage());
+
+           
         }
         return medicamentos;
     }
@@ -106,7 +110,7 @@ public class ConsultasH2 {
                 medicamento.setName(resultSet.getString("nombre"));
                 return medicamento;
             } else {
-                return null;
+                throw new Excepciones();
             }
         } catch (SQLException e) {
             System.out.println(e);
