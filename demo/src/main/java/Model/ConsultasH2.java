@@ -12,6 +12,28 @@ import javax.swing.JOptionPane;
 
 public class ConsultasH2 {
 
+    public List<Medicaments> medicamentosEncontrados(Medicaments parametro) {
+        List<Medicaments> medicamentos = new ArrayList<>();
+        try (Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicamentos WHERE nombre LIKE ?")) {
+                
+            preparedStatement.setString(1, "%" + parametro.getName() + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+                Medicaments medicamento = new Medicaments();
+                medicamento.setId(resultSet.getInt("id"));
+                medicamento.setName(resultSet.getString("nombre"));
+                medicamentos.add(medicamento);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return medicamentos;
+    }
+
     public boolean reiniciarId() {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("ALTER TABLE medicamentos ALTER COLUMN id RESTART WITH 1")) {

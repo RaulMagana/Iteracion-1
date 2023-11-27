@@ -48,6 +48,8 @@ public class H2DBController implements ActionListener {
 
     }
 
+    
+
     private void reiniciarId() {
         int confirmacion = JOptionPane.showConfirmDialog(jtable, "¿Estas seguro de reiniciar el ID?");
         if (confirmacion == JOptionPane.YES_OPTION) {
@@ -123,32 +125,11 @@ public class H2DBController implements ActionListener {
 }
     private void buscarMedicamento() {
         obtenerMedicamentoDesdeVista();
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        medicaments.setId(Integer.parseInt(jtable.jTextField1.getText()));
-        medicaments.setName(jtable.jTextField2.getText());
-        if (consultasH2.buscarMedicamento(medicaments) != null) {
-            JOptionPane.showMessageDialog(jtable, "Medicamento encontrado");
-            llenarVistaDesdeMedicamento();
-        } else {
-            JOptionPane.showMessageDialog(jtable, "No se pudo encontrar el medicamento");
-        }
+    List<Medicaments> resultadosBusqueda = consultasH2.medicamentosEncontrados(medicaments);
+    if (!resultadosBusqueda.isEmpty()) {
+        JOptionPane.showMessageDialog(jtable, "Medicamento encontrado");
+        jtable.actualizarTabla(resultadosBusqueda);
+    }
     }
 
     
